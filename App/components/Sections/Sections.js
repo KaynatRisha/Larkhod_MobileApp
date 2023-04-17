@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
 import user from "../../assets/user.png";
-import styles from "../Sections/Section.Style";
+import styles from "./Section.Style";
 import White from "../../assets/background.png";
 import primary from "../../assets/primary.png";
 import secondary from "../../assets/secondary.png";
 import high from "../../assets/high.png";
-import SeatchBar from "../SearchBar";
+import SeatchBar from "../../screens/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 
 const Sections = () => {
@@ -25,16 +25,22 @@ const Sections = () => {
       <View style={styles.bottom}>
         <TouchableOpacity
           style={styles.bottomBtn}
-          onPress={() => navigation.navigate("Primary")}
+          onPress={() => navigation.navigate("Grades")}
         >
           <Text style={styles.btnText}>بخش ابتداییه</Text>
           <Image source={primary} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomBtn}>
+        <TouchableOpacity
+          style={styles.bottomBtn}
+          onPress={() => navigation.navigate()}
+        >
           <Text style={styles.btnText}>بخش متوسطه</Text>
           <Image source={secondary} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.bottomBtn}>
+        <TouchableOpacity
+          style={styles.bottomBtn}
+          onPress={() => navigation.navigate()}
+        >
           <Text style={styles.btnText}>بخش لیسه</Text>
           <Image source={high} />
         </TouchableOpacity>

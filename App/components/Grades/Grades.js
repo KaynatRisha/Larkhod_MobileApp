@@ -1,14 +1,14 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
-import classLogo from "../../../assets/Group_211_y.png";
-import styleSection from "../Section.Style";
-import SearchBar from "../../SearchBar";
+import classLogo from "../../assets/Group_211_y.png";
+import styleSection from "../Sections/Section.Style";
+import SearchBar from "../../screens/SearchBar";
 import { StyleSheet } from "react-native";
-import user from "../../../assets/user.png";
-import gradeLogo from "../../../assets/Group_211_y.png";
-import arrow from "../../../assets/Group_158_a.png";
+import user from "../../assets/user.png";
+import gradeLogo from "../../assets/Group_211_y.png";
+import arrow from "../../assets/Group_158_a.png";
 import { useNavigation } from "@react-navigation/native";
-const Primary = () => {
+const Grades = () => {
   const navigation = useNavigation();
   return (
     <View style={styleSection.container}>
@@ -34,12 +34,15 @@ const Primary = () => {
         </View>
         <TouchableOpacity
           style={style.grades}
-          onPress={() => navigation.navigate("GradeFirst")}
+          onPress={() => navigation.navigate("Books")}
         >
           <Text style={style.gradesText}>صنف اول</Text>
           <Image source={gradeLogo} />
         </TouchableOpacity>
-        <TouchableOpacity style={style.grades}>
+        <TouchableOpacity
+          style={style.grades}
+          onPress={() => navigation.navigate()}
+        >
           <Text style={style.gradesText}>صنف دوم</Text>
           <Image source={gradeLogo} />
         </TouchableOpacity>
@@ -103,4 +106,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default Primary;
+export default Grades;

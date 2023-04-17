@@ -8,20 +8,20 @@ import {
   ScrollView,
   FlatList,
 } from "react-native";
-import arrow from "../../../../../assets/Group_158.png";
-import Logo from "../../../../../assets/PNG_Format_e.png";
-import unitIcon from "../../../../../assets/Group_161.png";
-import SearchBar from "../../../../SearchBar";
+import arrow from "../../assets/Group_158.png";
+import Logo from "../../assets/PNG_Format_e.png";
+import unitIcon from "../../assets/Group_161.png";
+import SearchBar from "../../screens/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 
-const Dari_1st = () => {
+const Units = () => {
   const navigation = useNavigation();
   return (
-    <View style={style.container}>
+    <ScrollView contentContainerStyle={style.container}>
       <View style={style.top}>
         <TouchableOpacity
           style={style.arrowStyle}
-          onPress={() => navigation.navigate("GradeFirst")}
+          onPress={() => navigation.navigate("Books")}
         >
           <Image source={arrow} />
         </TouchableOpacity>
@@ -95,7 +95,7 @@ const Dari_1st = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -154,14 +154,18 @@ const style = StyleSheet.create({
     margin: 10,
     padding: 35,
     borderRadius: 25,
+    width: 140,
+    alignItems: "center",
+    justifyContent: "center",
+    height: 200,
   },
   unitTitle: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
-    width: 70,
+    width: 90,
     textAlign: "center",
   },
 });
 
-export default Dari_1st;
+export default Units;

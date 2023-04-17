@@ -66,6 +66,10 @@ const Styles = StyleSheet.create({
     borderBottomWidth: 1,
     width: "100%",
     height: 40,
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    alignItems: "center",
+    textAlign: "right",
   },
   submitBtn: {
     backgroundColor: "rgba(60,152,189,1)",

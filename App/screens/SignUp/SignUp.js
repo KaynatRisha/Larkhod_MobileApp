@@ -12,29 +12,31 @@ import {
   Alert,
 } from "react-native";
 import google from "../../assets/google.png";
-import facebook from "../../assets/facebook.png";
+import facebook from "../..//assets/facebook.png";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Styles from "./SignUp.style";
 import logo from "../../assets/White_PNG_Format_z.png";
-import styles from "../SignUp/SignUp.style";
+import styles from "./SignUp.style";
+import seen from "../../assets/Group_8.png";
 
 const SignUp = () => {
   const navigation = useNavigation();
-  const [userName, setUserName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [passWord, setPassword] = useState("");
-  const [repeatPassWord, setRepeatPassWord] = useState("null");
-  const submit = () => {
-    if (
-      userName === "" ||
-      Email === "" ||
-      passWord == "" ||
-      repeatPassWord === ""
-    ) {
-      Alert.alert("لطفاً معلومات خود را مکمل  کنید");
+
+  const [seenVariable, setSeenVariable] = useState(true);
+
+  const SeenPassword = () => {
+    if (seenVariable == true) {
+      setSeenVariable(false);
     } else {
-      navigation.navigate("Sections");
+      setSeenVariable(true);
     }
+  };
+  const submit = () => {
+    // Regular Expression for Email validation
+    const emailRegExpress =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    navigation.navigate("Sections");
   };
   return (
     <SafeAreaView style={Styles.outContainer}>
@@ -51,37 +53,40 @@ const SignUp = () => {
         <View style={styles.form}>
           <TextInput
             placeholder="نام کاربری"
-            onChangeText={(value) => {
-              setUserName(value);
-            }}
+            keyboardType="ascii-capable"
             style={styles.input}
             textContentType="username"
+            maxLength={15}
           />
-          <Text id="username"></Text>
           <TextInput
             placeholder="ایمیل آدرس"
-            onChangeText={(value) => {
-              setEmail(value);
-            }}
+            keyboardType="email-address"
             style={styles.input}
             textContentType="emailAddress"
           />
-          <TextInput
-            placeholder="رمز عبور"
-            onChangeText={(value) => {
-              setPassword(value);
-            }}
-            style={styles.input}
-            textContentType="password"
-          />
-          <TextInput
-            placeholder="تکرار رمز عبور"
-            style={styles.input}
-            onChange={(value) => {
-              setRepeatPassWord(value);
-            }}
-            textContentType="password"
-          />
+          <View style={styles.input}>
+            <TextInput
+              placeholder="رمز عبور"
+              textContentType="password"
+              secureTextEntry={seenVariable}
+              maxLength={8}
+            />
+            <TouchableOpacity onPress={() => SeenPassword()}>
+              <Image source={seen} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="تکرار رمز عبور"
+              textContentType="password"
+              secureTextEntry={seenVariable}
+              maxLength={8}
+            />
+            <TouchableOpacity onPress={() => SeenPassword()}>
+              <Image source={seen} />
+            </TouchableOpacity>
+          </View>
+
           <Pressable style={styles.submitBtn} onPress={submit}>
             <Text style={styles.submitText}>ایجاد حساب</Text>
           </Pressable>
@@ -94,10 +99,6 @@ const SignUp = () => {
           <TouchableOpacity style={styles.linkBtn}>
             <Image source={google} />
             <Text style={styles.linkBtnText}>با حساب گوگل خود وارد شوید</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.linkBtn}>
-            <Image source={facebook} />
-            <Text style={styles.linkBtnText}>با حساب فیسبوک خود وارد شوید</Text>
           </TouchableOpacity>
         </View>
       </View>

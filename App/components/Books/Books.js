@@ -1,22 +1,22 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { StyleSheet } from "react-native";
-import Logo from "../../../../assets/PNG_Format_e.png";
+import Logo from "../../assets/PNG_Format_e.png";
 import { useNavigation } from "@react-navigation/native";
-import arrow from "../../../../assets/Group_158.png";
-import SearchBar from "../../../SearchBar";
-import photo1 from "../../../../assets/Group_133.png";
-import photo2 from "../../../../assets/Group_143_em.png";
-import photo3 from "../../../../assets/Group_153.png";
+import arrow from "../../assets/Group_158.png";
+import SearchBar from "../../screens/SearchBar";
+import photo1 from "../../assets/Group_133.png";
+import photo2 from "../../assets/Group_143_em.png";
+import photo3 from "../../assets/Group_153.png";
 
-const GradeFirst = () => {
+const Books = () => {
   const navigation = useNavigation();
   return (
     <View style={style.container}>
       <View style={style.top}>
         <TouchableOpacity
           style={style.arrowStyle}
-          onPress={() => navigation.navigate("Primary")}
+          onPress={() => navigation.navigate("Grades")}
         >
           <Image source={arrow} />
         </TouchableOpacity>
@@ -35,7 +35,7 @@ const GradeFirst = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={style.bookItem}
-          onPress={() => navigation.navigate("Dari_1st")}
+          onPress={() => navigation.navigate("Units")}
         >
           <Image source={photo1} />
           <Text style={style.bootItemText}>کتاب دری</Text>
@@ -130,4 +130,4 @@ const style = StyleSheet.create({
     marginBottom: 5,
   },
 });
-export default GradeFirst;
+export default Books;
