@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
 import { StyleSheet } from "react-native";
 import Logo from "../../assets/PNG_Format_e.png";
 import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import arrow from "../../assets/Group_158.png";
 import SearchBar from "../../screens/SearchBar";
 import photo1 from "../../assets/Group_133.png";
@@ -11,6 +12,7 @@ import photo3 from "../../assets/Group_153.png";
 
 const Books = () => {
   const navigation = useNavigation();
+  const route = useRoute();
   return (
     <View style={style.container}>
       <View style={style.top}>
@@ -22,7 +24,7 @@ const Books = () => {
         </TouchableOpacity>
         <Image source={Logo} />
         <View style={style.books}>
-          <Text style={style.BooksText}>کتاب های صنف اول</Text>
+          <Text style={style.BooksText}>کتاب های {route.params.grade} </Text>
         </View>
       </View>
       <View style={style.middle}>

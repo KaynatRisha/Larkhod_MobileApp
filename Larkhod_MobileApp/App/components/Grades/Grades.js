@@ -1,15 +1,44 @@
 import React from "react";
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import classLogo from "../../assets/Group_211_y.png";
 import styleSection from "../Sections/Section.Style";
 import SearchBar from "../../screens/SearchBar";
 import { StyleSheet } from "react-native";
 import user from "../../assets/user.png";
-import gradeLogo from "../../assets/Group_211_y.png";
+// import route.params.gradeimg.img from "../../assets/Group_211_y.png";
 import arrow from "../../assets/Group_158_a.png";
 import { useNavigation } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 const Grades = () => {
+  const route = useRoute();
   const navigation = useNavigation();
+  const Renderitem = ({ item }) => {
+    return (
+      <TouchableOpacity
+        key={item.id}
+        style={style.grades}
+        onPress={() =>
+          navigation.navigate("Books", {
+            grade: item.grade,
+            params: {
+              id: item.id,
+              name: item.name,
+            },
+          })
+        }
+      >
+        <Text style={style.gradesText}>{item.grade}</Text>
+        <Image source={item.img} />
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={styleSection.container}>
       <View style={styleSection.top}>
@@ -32,36 +61,43 @@ const Grades = () => {
         <View style={style.select}>
           <Text style={style.selectText}>صنف تان را انتخاب کنید</Text>
         </View>
-        <TouchableOpacity
+        <FlatList
+          style={{ width: "90%" }}
+          data={route.params.classes}
+          renderItem={({ item }) => {
+            return <Renderitem item={item} />;
+          }}
+        />
+        {/* <TouchableOpacity
           style={style.grades}
-          onPress={() => navigation.navigate("Books")}
+          onPress={() => navigation.navigate()}
         >
-          <Text style={style.gradesText}>صنف اول</Text>
-          <Image source={gradeLogo} />
+          <Text style={style.gradesText}>{route.params.grade1}</Text>
+          <Image source={route.params.gradeimg1.img} />
         </TouchableOpacity>
         <TouchableOpacity
           style={style.grades}
           onPress={() => navigation.navigate()}
         >
-          <Text style={style.gradesText}>صنف دوم</Text>
-          <Image source={gradeLogo} />
+          <Text style={style.gradesText}>{route.params.grade2}</Text>
+          <Image source={route.params.gradeimg2.img} />
         </TouchableOpacity>
         <TouchableOpacity style={style.grades}>
-          <Text style={style.gradesText}>صنف سوم</Text>
-          <Image source={gradeLogo} />
+          <Text style={style.gradesText}>{route.params.grade3}</Text>
+          <Image source={route.params.gradeimg3.img} />
         </TouchableOpacity>
         <TouchableOpacity style={style.grades}>
-          <Text style={style.gradesText}>صنف چهارم</Text>
-          <Image source={gradeLogo} />
+          <Text style={style.gradesText}>{route.params.grade4}</Text>
+          <Image source={route.params.gradeimg4.img} />
         </TouchableOpacity>
         <TouchableOpacity style={style.grades}>
-          <Text style={style.gradesText}>صنف پنجم</Text>
-          <Image source={gradeLogo} />
+          <Text style={style.gradesText}>{route.params.grade5}</Text>
+          <Image source={route.params.gradeimg5.img} />
         </TouchableOpacity>
         <TouchableOpacity style={style.grades}>
-          <Text style={style.gradesText}>صنف ششم</Text>
-          <Image source={gradeLogo} />
-        </TouchableOpacity>
+          <Text style={style.gradesText}>{route.params.grade6}</Text>
+          <Image source={route.params.gradeimg6.img} />
+        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -87,7 +123,7 @@ const style = StyleSheet.create({
     fontWeight: "bold",
   },
   grades: {
-    width: "85%",
+    width: "100%",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 50,
